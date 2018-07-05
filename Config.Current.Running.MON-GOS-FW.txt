@@ -1,0 +1,1606 @@
+: 
+: Serial Number: FCH19067D4F
+: Hardware:   ASA5545, 12288 MB RAM, CPU Lynnfield 2660 MHz, 1 CPU (8 cores)
+!
+ASA Version 9.4(4)5 
+!
+terminal width 180
+hostname MON-GOS-FW
+enable password ad7oZ9I.N3RPWNsL encrypted
+names
+!
+interface GigabitEthernet0/0
+ nameif outside
+ security-level 0
+ ip address 217.169.38.163 255.255.255.224 standby 217.169.38.171 
+!
+interface GigabitEthernet0/1
+ nameif inside
+ security-level 100
+ ip address 172.31.96.106 255.255.255.248 standby 172.31.96.107 
+!
+interface GigabitEthernet0/2
+ nameif CLOUD-MGMT
+ security-level 90
+ ip address 172.31.96.114 255.255.255.248 standby 172.31.96.115 
+!
+interface GigabitEthernet0/3
+ description LAN/STATE Failover Interface
+!
+interface GigabitEthernet0/4
+ nameif VENDOR-DMZ
+ security-level 80
+ ip address 172.20.1.2 255.255.255.0 standby 172.20.1.3 
+!
+interface GigabitEthernet0/5
+ nameif DMZ
+ security-level 90
+ ip address 172.19.1.2 255.255.255.0 
+!
+interface GigabitEthernet0/6
+ shutdown
+ no nameif
+ no security-level
+ no ip address
+!
+interface GigabitEthernet0/7
+ shutdown
+ no nameif
+ no security-level
+ no ip address
+!
+interface Management0/0
+ management-only
+ nameif management
+ security-level 100
+ ip address 192.168.1.1 255.255.255.0 
+!
+banner login 
+banner login 
+banner login  DO NOT ATTEMPT TO ACCESS THIS DEVICE WITHOUT PERMISSION FROM THE OWNER. LOGINS ARE RESTRICTED TO AUTHORIZED USERS.
+banner login 
+banner login                             YOUR ACTIONS MAY BE MONITORED AND RECORDED
+banner login 
+banner motd 
+banner motd 
+banner motd  DO NOT ATTEMPT TO ACCESS THIS DEVICE WITHOUT PERMISSION FROM THE OWNER. LOGINS ARE RESTRICTED TO AUTHORIZED USERS.
+banner motd 
+banner motd                             YOUR ACTIONS MAY BE MONITORED AND RECORDED
+banner motd 
+banner motd 
+banner motd 
+banner motd   AUTHORISED USERS ONLY - LOG OUT IMMEDIATELY IF YOU ARE NOT AUTHORISED TO USE THIS SYSTEM - YOUR ACTIONS MAY BE MONITORED OR RECORDED
+banner motd 
+banner motd 
+boot system disk0:/asa944-5-smp-k8.bin
+ftp mode passive
+clock timezone GMT 0
+clock summer-time BST recurring last Sun Mar 2:00 last Sun Oct 2:00
+object network 6DG_Access
+ subnet 217.10.128.128 255.255.255.128
+object network BLU_NET_10.211.146.0
+ subnet 10.211.146.0 255.255.255.0
+object network BLU_NET_10.211.161.0
+ subnet 10.211.161.0 255.255.255.0
+object network BLU_NET_10.211.162.0
+ subnet 10.211.162.0 255.255.255.0
+object network BLU_NET_10.211.163.0
+ subnet 10.211.163.0 255.255.255.0
+object network BLU_NET_10.213.146.0
+ subnet 10.213.146.0 255.255.255.0
+object network BLU_NET_10.213.161.0
+ subnet 10.213.161.0 255.255.255.0
+object network BLU_NET_10.213.162.0
+ subnet 10.213.162.0 255.255.255.0
+object network BLU_NET_172.17.60.224
+ subnet 172.17.60.224 255.255.255.240
+object network BLU_NET_172.17.61.224
+ subnet 172.17.61.224 255.255.255.240
+object network Email_SecEmail2
+ host 172.19.2.20
+object network Host_ITG_PROD_MQServer
+ host 208.224.251.100
+object network Host_ITG_UAT_1
+ host 208.224.251.1
+object network Host_ITG_UAT_MQServer
+ host 208.224.251.101
+object network Host_ITG_UAT_WebServer
+ host 208.224.251.102
+object network Host_NYFIX_PROD
+ host 38.160.70.84
+object network Host_NYFIX_UAT_PrivateCircuit
+ host 38.160.70.165
+object network Host_UBS_InterDealer_Srv1
+ host 75.124.69.92
+object network Host_UBS_InterDealer_Srv2
+ host 75.124.69.88
+object network Host_UBS_InterDealer_Srv3
+ host 75.124.69.81
+object network NET_CLOUD_VLAN_SDN
+ subnet 10.1.172.0 255.255.255.0
+object network NET_Cloud_VLAN_GRE
+ subnet 10.1.162.0 255.255.255.0
+object network Net_Bloomberg_Electronic_Trading
+ subnet 160.43.0.0 255.255.0.0
+object network Net_Bloomberg_LAN_1_UK
+ subnet 208.134.161.0 255.255.255.0
+object network Net_Bloomberg_LAN_2_UK
+ subnet 205.183.246.0 255.255.255.0
+object network Net_Bloomberg_LAN_5_UK
+ subnet 69.184.0.0 255.255.0.0
+object network Net_Goswell_Road_LAN
+ subnet 10.202.72.0 255.255.255.128
+object network Net_Goswell_Road_Mondrian_DMZ
+ subnet 172.19.1.0 255.255.255.0
+object network Net_Goswell_Road_Mondrian_DMZ_SA_DHCP
+ subnet 172.21.1.0 255.255.255.0
+object network Net_Gresham_Street_LAN
+ subnet 10.202.80.0 255.255.252.0
+object network Net_Gresham_Street_TEST_LAN
+ subnet 10.202.86.0 255.255.255.0
+object network Net_Gresham_Street_VOICE
+ subnet 10.202.84.0 255.255.254.0
+object network Net_Hopton_Street_LAN
+ subnet 10.202.72.128 255.255.255.128
+object network Net_Hopton_Street_LAN2
+ subnet 10.202.60.0 255.255.252.0
+object network Net_Hopton_Street_Mondrian_DMZ
+ subnet 172.19.2.0 255.255.255.0
+object network Net_Hopton_Street_NEWLAN
+ subnet 10.202.40.0 255.255.252.0
+object network Net_Philadelphia
+ subnet 10.202.75.0 255.255.255.0
+object network Net_Test_LAN
+ subnet 10.202.74.0 255.255.255.0
+object network Net_Vendor_DMZ
+ subnet 172.20.1.0 255.255.255.0
+object network Net_vManagement_101
+ subnet 10.202.101.0 255.255.255.0
+object network Net_vManagement_103
+ subnet 10.202.103.0 255.255.255.0
+object network Net_vReplication_102
+ subnet 10.202.102.0 255.255.255.0
+object network Net_vReplication_104
+ subnet 10.202.104.0 255.255.255.0
+object network Net_vServers_100
+ subnet 10.202.100.0 255.255.255.0
+object network Net_vSpare_105
+ subnet 10.202.105.0 255.255.255.0
+object network Net_viSCSI_106
+ subnet 10.202.106.0 255.255.255.0
+object network Net_viSCSI_107
+ subnet 10.202.107.0 255.255.255.0
+object network Srv_SMTP
+ host 10.202.100.63
+object network Switch-GR-GATEWAY
+ host 10.202.72.1
+object network UBS2
+ host 139.149.27.84
+object network ubs3
+ host 139.149.133.12
+object network Switch-GR-GATEWAY-EXT
+ host 217.169.38.162
+object network obj-10.0.0.0-8
+ subnet 10.0.0.0 255.0.0.0
+object network MANSELL-REMOTE
+ subnet 192.168.50.0 255.255.255.0
+object network OBJ-HST-DC1MON01C
+ host 10.202.100.100
+object network OBJ-HST-DC1DOM04C
+ host 10.202.100.102
+object network OBJ-HST-DC1DOM03C
+ host 10.202.100.104
+object network OBJ-HST-DC1DOM02C
+ host 10.202.100.98
+object network OBJ-HST-DC1DOM01C
+ host 10.202.100.99
+object network OBJ-HST-PHLDOM01C
+ host 10.202.75.101
+object network OBJ-HST-PHLDOM02C
+ host 10.202.75.108
+object network OBJ-NET-VLAN220_DC1_Management
+ subnet 10.1.162.0 255.255.255.0
+object network OBJ-NET-VLAN222_DC2_Management
+ subnet 10.1.172.0 255.255.255.0
+object network OBJ-NET-VLAN100_Servers
+ subnet 10.202.100.0 255.255.255.0
+object network OBJ-NET-VLAN1_PHL_LAN
+ subnet 10.202.75.0 255.255.255.0
+object network OBJ-NET-VLAN1_GRE_Workstations
+ subnet 10.202.80.0 255.255.252.0
+object network OBJ-NET-VLAN2_Gresham_Voice
+ subnet 10.202.84.0 255.255.255.0
+object network OBJ-HST-FX_Connect_01
+ host 12.130.13.110
+object network OBJ-HST-FX_Connect_02
+ host 12.130.13.114
+object network OBJ-HST-FX_Connect_03
+ host 74.204.222.12
+object network OBJ-HST-FX_Connect_04
+ host 74.204.222.13
+object network OBJ-HST-FX_Connect_05
+ host 74.204.222.14
+object network OBJ-HST-FX_Connect_06
+ host 74.204.222.15
+object network OBJ-HST-Franking_Machine
+ host 10.202.80.151
+object network OBJ-HST-UK_Meter_Services_Neo_Post
+ host 82.20.191.30
+object network OBJ-HST-IT_Jump_On_Box
+ host 10.202.82.2
+object network OBJ-HST-Google_DNS_Primary
+ host 8.8.8.8
+object network OBJ-HST-Google_DNS_Secondary
+ host 8.8.4.4
+object network OBJ-HST-REGENT
+ host 10.202.100.48
+object network OBJ-HST-CORNHILL
+ host 10.202.100.49
+object network OBJ-HST-CUBITT
+ host 10.202.100.51
+object network OBJ-HST-Amazon_Web_Services
+ host 52.16.167.74
+object network OBJ-HST-PTA_Connect
+ host 147.249.149.139
+object network OBJ-HST-TradeWeb_WebClient_Server
+ host 193.108.18.194
+object network OBJ-HST-FactSet_01
+ subnet 192.234.235.0 255.255.255.0
+object network OBJ-HST-FactSet_02
+ subnet 206.165.137.224 255.255.255.240
+object network OBJ-HST-FactSet_03
+ subnet 208.184.40.0 255.255.255.0
+object network OBJ-HST-FactSet_04
+ subnet 64.124.108.192 255.255.255.240
+object network OBJ-HST-FactSet_05
+ subnet 64.209.89.0 255.255.255.0
+object network OBJ-HST-FactSet_06
+ subnet 64.95.112.160 255.255.255.224
+object network OBJ-HST-FactSet_07
+ subnet 84.233.158.64 255.255.255.240
+object network OBJ-NET-FactSet_08
+ subnet 164.55.240.0 255.255.240.0
+object network OBJ-HST-ROMFORD
+ host 10.202.100.59
+object network OBJ-HST-CAP_IQ_Server_01
+ host 204.8.135.60
+object network OBJ-HST-CAP_IQ_Server_02
+ host 12.185.49.66
+object network OBJ-HST-Workstation_Paul_Gannaway
+ host 10.202.82.1
+object network OBJ-HST-Workstation_Sam_Elliott
+ host 10.202.82.16
+object network OBJ-HST-Workstation_John_Clare
+ host 10.202.82.26
+object network OBJ-HST-Workstation_Jimmy_Findiklis
+ host 10.202.82.3
+object network OBJ-HST-Workstation_SEI_Mutual_Fund_Download
+ host 10.202.82.195
+object network OBJ-HST-Workstation_Matthew_Shanahan
+ host 10.202.82.8
+object network OBJ-NET-UBS_Server_01
+ subnet 138.206.160.192 255.255.255.192
+object network OBJ-NET-UBS_Server_02
+ subnet 138.206.162.0 255.255.255.0
+object network OBJ-NET-UBS_Server_03
+ subnet 139.149.102.192 255.255.255.192
+object network OBJ-NET-UBS_Server_04
+ subnet 139.149.102.64 255.255.255.192
+object network OBJ-NET-UBS_Server_05
+ subnet 139.149.133.0 255.255.255.0
+object network OBJ-NET-UBS_Server_06
+ subnet 139.149.27.0 255.255.255.0
+object network OBJ-NET-UBS_Server_07
+ subnet 151.191.185.0 255.255.255.0
+object network OBJ-NET-UBS_Server_08
+ subnet 151.191.185.128 255.255.255.192
+object network OBJ-NET-UBS_Server_09
+ subnet 151.191.185.192 255.255.255.192
+object network OBJ-NET-UBS_Server_10
+ subnet 202.1.67.0 255.255.255.0
+object network OBJ-NET-UBS_Server_11
+ subnet 202.1.68.128 255.255.255.192
+object network OBJ-NET-UBS_Server_12
+ subnet 202.1.98.0 255.255.255.0
+object network OBJ-NET-UBS_Server_13
+ subnet 202.1.98.64 255.255.255.192
+object network OBJ-HST-UNS_Server_14
+ host 139.149.27.84
+object network OBJ-HST-UNS_Server_15
+ host 139.149.133.12
+object network OBJ-HST-Worksmart_Server
+ host 86.53.24.58
+object network OBJ-NET-Mansell_Street
+ subnet 192.168.50.0 255.255.255.0
+object network OBJ-HST-Workstation_James_McNeilage
+ host 10.202.82.28
+object network OBJ-HST-DC1TRN01N
+ host 10.202.100.214
+object network OBJ-HST-DC1EPO01N
+ host 10.202.100.179
+object network OBJ-HST-DC1PAT01N
+ host 10.202.100.39
+object network OBJ-NET-Trend_Updates
+ subnet 54.221.196.0 255.255.255.0
+object network OBJ-HST-EPO_Update_01
+ fqdn v4 update.nai.com
+object network OBJ-HST-EPO_Update_02
+ fqdn v4 ftp.nai.com
+object network OBJ-HST-BNY_Mellon_Server
+ host 170.61.110.10
+object network OBJ-HST-SHEEN
+ host 10.202.100.82
+object network OBJ-HST-MONLD1-VUM
+ host 10.1.162.205
+object network OBJ-HST-DMZ_Switch
+ host 172.19.1.5
+object network OBJ-HST-DC2MON02C
+ host 10.202.130.100
+object network OBJ-HST-CORE.MONDRIAN.COM
+ host 10.202.100.241
+object network OBJ-HST-SENTRY.MONDRIAN.COM
+ host 10.202.100.240
+object network OBJ-HST-6DG_PRTG_Updates
+ host 95.131.218.10
+object network OBJ-HST-3PAR_HQ_03
+ host 15.201.225.95
+object network OBJ-HST-3PAR_HQ_04
+ host 15.240.0.73
+object network OBJ-HST-3PAR_HQ_05
+ host 15.240.0.74
+object network OBJ-HST-3PAR_HQ_06
+ host 15.240.56.190
+object network OBJ-HST-3PAR_HQ_07
+ host 15.58.64.58
+object network OBJ-HST-BES_Remote_01
+ host 193.109.81.33
+object network OBJ-HST-BES_Remote_02
+ host 204.187.87.33
+object network OBJ-HST-BES_Remote_03
+ host 206.51.26.33
+object network OBJ-HST-BES_Remote_04
+ host 93.186.25.33
+object network OBJ-HST-3PAR_HQ_01
+ host 15.201.200.205
+object network OBJ-HST-3PAR_HQ_02
+ host 15.201.200.206
+object network OBJ-HST-Threatpulse_Host_UK
+ host 46.235.152.164
+object network OBJ-HST-Threatpulse_Host_France
+ host 46.235.153.164
+object network OBJ-HST-Threatpulse_Host_Germany
+ host 46.235.154.164
+object network OBJ-HST-BluecoatSG_Philadelphia_VIP
+ host 10.202.75.40
+object network OBJ-HST-BluecoatSG_Philadelphia_Primary
+ host 10.202.75.41
+object network OBJ-HST-BluecoatSG_Philadelphia_Secondary
+ host 10.202.75.42
+object network OBJ-HST-BluecoatSG_Gresham_VIP
+ host 10.202.80.50
+object network OBJ-HST-BluecoatSG_Gresham_Primary
+ host 10.202.80.51
+object network OBJ-HST-BluecoatSG_Gresham_Secondary
+ host 10.202.80.52
+object network OBJ-HST-Gresham_Mitel_Controller_Primary
+ host 10.202.84.30
+object network OBJ-HST-Gresham_Mitel_Controller_Secondary
+ host 10.202.84.32
+object network OBJ-HST-Mitel_Phone_Home
+ host 216.191.234.91
+object network OBJ-HST-Bloomberg_FTP_01
+ host 69.191.212.14
+object network OBJ-HST-Bloomberg_FTP_02
+ host 205.216.112.8
+object network OBJ-HST-Bloomberg_SFTP_01
+ host 205.216.112.23
+object network OBJ-HST-Bloomberg_SFTP_02
+ host 208.22.57.176
+object network OBJ-HST-Workstation_Julian_Siedlecki
+ host 10.202.82.182
+object network OBJ-HST-Workstation_Myles_Faulkner
+ host 10.202.82.188
+object network OBJ-HST-Trend_Updates_IUA_01
+ host 2.23.196.192
+object network OBJ-HST-Trend_Updates_IUA_02
+ host 95.101.18.189
+object network OBJ-HST-Trend_Updates_Smart_Scan
+ host 2.22.68.157
+object network OBJ-NET-VLAN300_Servers
+ subnet 10.202.130.0 255.255.255.0
+object network OBJ-HST-Threatpulse_Host_UK1
+ host 185.2.196.133
+object network OBJ-HST-Threatpulse_Host_UK2
+ host 185.2.196.141
+object network OBJ-HST-Threatpulse_Host_UK3
+ host 185.2.196.149
+object network OBJ-HST-Threatpulse_Host_UK4
+ host 185.2.196.157
+object network OBJ-HST-Threatpulse_Host_UK5
+ host 185.2.196.164
+object network OBJ-HST-Threatpulse_Host_UK6
+ host 46.235.152.164
+object network obj-10.202.100.44
+ host 10.202.100.44
+object network obj-217.169.38.178
+ host 217.169.38.178
+object service tcp-443
+ service tcp source eq https 
+object network OBJ-HST-LIMEHOUSE
+ host 10.202.100.81
+object network OBJ-HST-Proxy_ByPass_Amazon
+ host 23.21.199.8
+object network OBJ-HST-Proxy_ByPass_Appserve_Technologies
+ host 66.18.14.23
+object network OBJ-HST-Proxy_ByPass_Barcap.com_01
+ host 141.228.140.105
+object network OBJ-HST-Proxy_ByPass_Barcap.com_02
+ host 141.228.179.1
+object network OBJ-HST-Proxy_ByPass_Barcap.com_03
+ host 141.228.196.225
+object network OBJ-HST-Proxy_ByPass_Barcap.com_04
+ host 146.127.226.101
+object network OBJ-HST-Proxy_ByPass_Barcap.com_05
+ host 146.127.226.105
+object network OBJ-HST-Proxy_ByPass_Barcap.com_06
+ host 147.63.166.101
+object network OBJ-HST-Proxy_ByPass_Barcap.com_07
+ host 147.63.166.162
+object network OBJ-HST-Proxy_ByPass_Blackberry_01
+ host 74.82.71.25
+object network OBJ-HST-Proxy_ByPass_Blackberry_02
+ host 74.82.72.232
+object network OBJ-HST-Proxy_ByPass_Blackberry_03
+ host 74.82.73.169
+object network OBJ-HST-Proxy_ByPass_Blackberry_04
+ host 74.82.73.229
+object network OBJ-HST-Proxy_ByPass_Blackberry_05
+ host 93.186.30.29
+object network OBJ-HST-Proxy_ByPass_California_State_Teachers
+ host 68.234.80.88
+object network OBJ-HST-Proxy_ByPass_Camelot_UK_Lottery
+ host 194.246.78.102
+object network OBJ-HST-Proxy_ByPass_Den_Norske_Bank
+ host 193.71.227.197
+object network OBJ-HST-Proxy_ByPass_Fused
+ host 216.86.157.149
+object network OBJ-HST-Proxy_ByPass_Hewitt_Associates
+ host 204.152.238.93
+object network OBJ-HST-Proxy_ByPass_IBM
+ host 66.77.22.208
+object network OBJ-HST-Proxy_ByPass_Interactive_Data_01
+ host 198.180.161.5
+object network OBJ-HST-Proxy_ByPass_Interactive_Data_02
+ host 198.180.161.6
+object network OBJ-HST-Proxy_ByPass_JPMorgan_Chase
+ host 159.53.60.190
+object network OBJ-HST-Proxy_ByPass_L3_Comminications
+ host 205.181.72.94
+object network OBJ-HST-Proxy_ByPass_Littler_Menelson
+ host 206.16.240.76
+object network OBJ-HST-Proxy_ByPass_MacGregor.Net
+ host 12.130.11.203
+object network OBJ-HST-Proxy_ByPass_MarketAxess_01
+ host 204.128.52.207
+object network OBJ-HST-Proxy_ByPass_MarketAxess_02
+ host 204.128.52.209
+object network OBJ-HST-Proxy_ByPass_MarketAxess_03
+ host 204.128.53.208
+object network OBJ-HST-Proxy_ByPass_MarketAxess_04
+ host 204.128.52.200
+object network OBJ-HST-Proxy_ByPass_Messagelabs
+ host 194.106.221.113
+object network OBJ-HST-Proxy_ByPass_Satuit
+ host 209.235.10.86
+object network OBJ-HST-Proxy_ByPass_State_Street_01
+ host 12.130.13.111
+object network OBJ-HST-Proxy_ByPass_State_Street_02
+ host 12.130.13.112
+object network OBJ-HST-Proxy_ByPass_TradeWeb_01
+ host 193.108.18.130
+object network OBJ-HST-Proxy_ByPass_TradeWeb_02
+ host 193.108.18.131
+object network OBJ-HST-Proxy_ByPass_TradeWeb_03
+ host 208.226.148.203
+object network OBJ-HST-Proxy_ByPass_TradeWeb_04
+ host 208.226.148.204
+object network OBJ-HST-Proxy_ByPass_Worksmart
+ host 94.185.190.4
+object network OBJ-NET-Mondrian_DMZ
+ subnet 172.19.1.0 255.255.255.0
+object network OBJ-HST-ITG_MQ_Server
+ host 208.224.251.100
+object network OBJ-HST-COLLIER
+ host 10.202.100.85
+object network OBJ-HST-AWS_VM
+ host 52.16.167.74
+object network OBJ-HST-Limehouse
+ host 10.202.100.81
+object network OBJ-HST-Secure1.mondrian.com
+ host 172.19.1.30
+object network OBJ-NET-Goswell_Road_Remote_Access_DHCP
+ subnet 172.21.1.0 255.255.255.0
+object network OBJ-HST-GUTTER
+ host 10.202.100.200
+object network OBJ-HST-Goswell_Road_DMZ_Stack
+ host 172.19.1.5
+object network OBJ-HST-Message_Labs_01
+ subnet 216.82.240.0 255.255.240.0
+object network OBJ-HST-Message_Labs_02
+ subnet 67.219.240.0 255.255.240.0
+object network OBJ-HST-Message_Labs_03
+ subnet 85.158.136.0 255.255.248.0
+object network OBJ-HST-Message_Labs_04
+ subnet 95.131.104.0 255.255.248.0
+object network OBJ-HST-Message_Labs_05
+ subnet 46.226.48.0 255.255.248.0
+object network OBJ-HST-Message_Labs_06
+ subnet 117.120.16.0 255.255.248.0
+object network OBJ-HST-KINGSWAY
+ host 10.202.100.88
+object network OBJ-HST-FINSBURY
+ host 10.202.100.29
+object network OBJ-HST-Autex_01
+ host 169.141.36.2
+object network OBJ-HST-Autex_02
+ host 169.141.36.4
+object network OBJ-HST-Autex_03
+ host 169.141.8.70
+object network OBJ-HST-Autex_04
+ host 169.141.8.29
+object network OBJ-HST-Bloomberg_FIET_Hub
+ host 160.43.94.158
+object network OBJ-HST-NYFIX
+ host 38.160.70.84
+object network OBJ-HST-TradeWeb_Market_Access_01
+ host 204.128.52.218
+object network OBJ-HST-TradeWeb_Market_Access_02
+ host 204.128.53.218
+object network OBJ-HST-TradeWeb_Market_Access_03
+ host 206.65.180.218
+object network OBJ-HST-TradeWeb_Market_Access_04
+ host 62.189.50.148
+object network OBJ-HST-TradeWeb_Market_Access_05
+ host 193.108.18.148
+object network OBJ-HST-HESTON
+ host 10.202.100.26
+object network OBJ-HST-KENTON
+ host 10.202.100.186
+object network OBJ-HST-MORDEN
+ host 10.202.100.33
+object network OBJ-HST-Trend_Updates_IUA_03
+ host 23.212.109.169
+object network OBJ-NET-Bloomberg_01
+ subnet 208.134.161.0 255.255.255.0
+object network OBJ-NET-Bloomberg_02
+ subnet 205.183.246.0 255.255.255.0
+object network OBJ-NET-Bloomberg_03
+ subnet 199.105.176.0 255.255.248.0
+object network OBJ-NET-Bloomberg_04
+ subnet 199.105.184.0 255.255.254.0
+object network OBJ-NET-Bloomberg_05
+ subnet 69.184.0.0 255.255.0.0
+object network OBJ-HST-Bloomberg_FTP_03
+ host 208.22.57.165
+object network OBJ-HST-Thomson_Reuters_AMERS1
+ host 159.22.40.106
+object network OBJ-HST-Thomson_Reuters_EMEA
+ host 159.220.1.32
+object network OBJ-NET-Thomson_Reuters_Eikon_01
+ subnet 159.220.40.0 255.255.255.128
+object network OBJ-NET-Thomson_Reuters_Eikon_02
+ subnet 192.165.219.0 255.255.255.0
+object network OBJ-NET-Thomson_Reuters_Eikon_03
+ subnet 159.220.16.0 255.255.255.128
+object network OBJ-NET-Thomson_Reuters_Eikon_04
+ subnet 159.220.1.0 255.255.255.128
+object network OBJ-NET-Thomson_Reuters_Networks
+ subnet 155.195.0.0 255.255.0.0
+object network OBJ-HST-Thomson_Reuters_AMERS2
+ host 192.165.219.185
+object network OBJ-HST-MON_GOS_RADIANZ
+ host 172.20.1.24
+object network OBJ-HST-remote1.mondrian.com
+ host 172.19.1.50
+object network OBJ-HST-remote1.mondrian.com-EXT
+ host 217.169.38.190
+object network OBJ-HST-Proxy_ByPass_Trioptima_01
+ host 185.103.188.193
+object network OBJ-NET-VLAN1_DC2_Servers_And_Workstations
+ subnet 10.202.130.0 255.255.255.0
+object network OBJ-HST-Proxy_ByPass_Trioptima_02
+ host 185.103.190.193
+object network OBJ-HST-Proxy_ByPass_Portal.Mondrian.Com
+ host 77.72.201.23
+object network OBJ-HST-Secure1.mondrian.com-EXT
+ host 217.169.38.180
+object network OBJ-HST-FINSBURY-XLAT
+ host 10.202.72.32
+object network OBJ-HST-HESTON-XLAT
+ host 10.202.81.61
+object network OBJ-HST-MORDEN-XLAT
+ host 10.202.81.101
+object network OBJ-HST-COLLIER-XLAT
+ host 10.202.81.91
+object network OBJ-HST-LIMEHOUSE-EXT
+ host 217.169.38.176
+object network OBJ-HST-CORE.MONDRIAN.COM-EXT
+ host 217.169.38.170
+object network OBJ-HST-SENTRY.MONDRIAN.COM-EXT
+ host 217.169.38.172
+object network OBJ-HST-Gresham_St_VideoConf
+ host 10.202.100.159
+object network OBJ-HST-Gresham_St_VideoConf-EXT
+ host 217.169.38.185
+object service OBJ-SVC-VideoConf_TCP_Range
+ service tcp source range 3230 3241 
+object service OBJ-SVC-VideoConf_UDP_Range
+ service udp source range 3230 3291 
+object network OBJ-NET-Bluesource_Backups_VPN_01
+ subnet 10.211.146.0 255.255.255.0
+object network OBJ-NET-Bluesource_Backups_VPN_02
+ subnet 10.211.161.0 255.255.255.0
+object network OBJ-NET-Bluesource_Backups_VPN_03
+ subnet 10.211.162.0 255.255.255.0
+object network OBJ-NET-Bluesource_Backups_VPN_04
+ subnet 10.211.163.0 255.255.255.0
+object network OBJ-NET-Bluesource_Backups_VPN_05
+ subnet 10.213.146.0 255.255.255.0
+object network OBJ-NET-Bluesource_Backups_VPN_06
+ subnet 10.213.161.0 255.255.255.0
+object network OBJ-NET-Bluesource_Backups_VPN_07
+ subnet 10.213.162.0 255.255.255.0
+object network OBJ-NET-Bluesource_Backups_VPN_08
+ subnet 172.17.60.224 255.255.255.240
+object network OBJ-NET-Bluesource_Backups_VPN_09
+ subnet 172.17.61.224 255.255.255.240
+object network OBJ-HST-mondc1-mivb01
+ host 10.202.101.80
+object network OBJ-HST-mondc1-sip01
+ host 10.202.101.85
+object network OBJ-HST-mondc1-src01
+ host 10.202.101.86
+object network OBJ-HST-mondc2-mivb02
+ host 10.202.102.80
+object network OBJ-HST-mondc2-sip02
+ host 10.202.102.85
+object network OBJ-HST-mondc2-src02
+ host 10.202.102.86
+object network OBJ-HST-Proxy_ByPass_TradeWeb_05
+ host 193.108.18.132
+object network OBJ-HST-nrr-sftp-uat.abide-financial.com
+ host 34.253.33.236
+object network OBJ-HST-nrr-sftp-prd.abide-financial.com
+ host 34.248.143.185
+object network OBJ-HST-Proxy_ByPass_TradeWeb_06
+ host 195.254.178.118
+object network OBJ-HST-Proxy_ByPass_TradeWeb_07
+ host 195.254.178.119
+object network OBJ-HST-auth.threatpulse.com_1
+ host 199.19.250.193
+object network OBJ-HST-auth.threatpulse.com_2
+ host 199.116.168.193
+object network OBJ-HST-portal.threatpulse.com
+ host 199.19.250.192
+object network OBJ-HST-Proxy_ByPass_Interactive_Data_03
+ host 216.221.221.155
+object network OBJ-HST-Proxy_ByPass_Interactive_Data_04
+ host 216.221.221.153
+object network OBJ-HST-Proxy_ByPass_Interactive_Data_ChallengePortal_01
+ host 199.181.252.73
+object network OBJ-HST-Proxy_ByPass_Interactive_Data_ChallengePortal_02
+ host 216.221.221.141
+object network OBJ-HST-Proxy_ByPass_Interactive_Data_Services
+ host 216.221.221.144
+object network OBJ-HST-Proxy_ByPass_Interactive_Data_Services_01
+ host 199.181.252.68
+object network OBJ-HST-3PAR_HQ_08
+ host 16.248.72.63
+object network OBJ-HST-3PAR_HQ_09
+ host 16.250.72.82
+object network OBJ-HST-3PAR_HQ_10
+ host 15.203.174.94
+object network OBJ-HST-3PAR_HQ_11
+ host 15.241.152.51
+object network OBJ-HST-3PAR_HQ_12
+ host 15.241.152.50
+object network OBJ-HST-3PAR_HQ_13
+ host 15.241.136.80
+object network OBJ-HST-3PAR_HQ_14
+ host 15.241.52.60
+object network OBJ-HST-3PAR_HQ_15
+ host 15.241.52.59
+object network OBJ-HST-3PAR_HQ_16
+ host 15.203.174.96
+object network OBJ-HST-3PAR_HQ_17
+ host 15.241.48.100
+object network OBJ-HST-3PAR_HQ_18
+ host 15.211.158.66
+object network OBJ-HST-3PAR_HQ_19
+ host 15.211.158.65
+object network OBJ-HST-3PAR_HQ_20
+ host 16.249.3.18
+object network OBJ-HST-3PAR_HQ_21
+ host 16.249.3.14
+object network OBJ-HST-3PAR_HQ_22
+ host 16.251.3.82
+object network OBJ-HST-3PAR_HQ_23
+ host 16.251.4.224
+object network OBJ-HST-3PAR_HQ_24
+ host 15.201.200.205
+object network OBJ-HST-3PAR_HQ_25
+ host 15.201.200.206
+object network OBJ-HST-3PAR_HQ_26
+ host 15.240.0.73
+object network OBJ-HST-3PAR_HQ_27
+ host 15.240.0.74
+object network OBJ-HST-www.mondrian.com
+ host 216.86.157.149
+object network OBJ-NET-Bloomberg_06
+ subnet 160.43.172.0 255.255.255.128
+object network OBJ-HST-Message_Labs_07
+ subnet 193.109.254.0 255.255.254.0
+object network OBJ-HST-Message_Labs_08
+ subnet 194.106.220.0 255.255.254.0
+object network OBJ-HST-Message_Labs_09
+ subnet 195.245.230.0 255.255.254.0
+object network OBJ-HST-Message_Labs_10
+ subnet 103.9.96.0 255.255.252.0
+object network OBJ-HST-Message_Labs_11
+ host 46.226.52.98
+object network OBJ-HST-Message_Labs_12
+ host 46.226.53.50
+object network OBJ-HST-DC1XCH01C
+ host 10.202.101.111
+object network OBJ-HST-DC1XCH02C
+ host 10.202.101.112
+object network OBJ-HST-DC2XCH03C
+ host 10.202.102.113
+object network OBJ-HST-DC2XCH04C
+ host 10.202.102.114
+object network OBJ-NET-VLAN101_Servers
+ subnet 10.202.101.0 255.255.255.0
+object network OBJ-NET-VLAN102_Servers
+ subnet 10.202.102.0 255.255.255.0
+object-group network GRP-HST-Proxy_Bypass_Trioptima
+ network-object object OBJ-HST-Proxy_ByPass_Trioptima_01
+ network-object object OBJ-HST-Proxy_ByPass_Trioptima_02
+object-group service OBJ-SVC-MobileIron tcp
+ port-object eq 9997
+ port-object eq 9998
+ port-object eq https
+object-group service GRP-SVC-VideoConf_TCP
+object-group network GRP-NET-Bluesource_Backups
+ network-object object OBJ-NET-Bluesource_Backups_VPN_01
+ network-object object OBJ-NET-Bluesource_Backups_VPN_02
+ network-object object OBJ-NET-Bluesource_Backups_VPN_03
+ network-object object OBJ-NET-Bluesource_Backups_VPN_04
+ network-object object OBJ-NET-Bluesource_Backups_VPN_05
+ network-object object OBJ-NET-Bluesource_Backups_VPN_06
+ network-object object OBJ-NET-Bluesource_Backups_VPN_07
+ network-object object OBJ-NET-Bluesource_Backups_VPN_08
+ network-object object OBJ-NET-Bluesource_Backups_VPN_09
+object-group network Net_Mondrian_Networks
+ network-object object NET_Cloud_VLAN_GRE
+ network-object object NET_CLOUD_VLAN_SDN
+ network-object object Net_vServers_100
+ network-object object Net_vManagement_101
+ network-object object Net_vReplication_102
+ network-object object Net_vManagement_103
+ network-object object Net_vReplication_104
+ network-object object Net_vSpare_105
+ network-object object Net_viSCSI_106
+ network-object object Net_viSCSI_107
+ network-object object Net_Hopton_Street_NEWLAN
+ network-object object Net_Hopton_Street_LAN2
+ network-object object Net_Goswell_Road_LAN
+ network-object object Net_Hopton_Street_LAN
+ network-object object Net_Test_LAN
+ network-object object Net_Philadelphia
+ network-object object Net_Gresham_Street_LAN
+ network-object object Net_Gresham_Street_VOICE
+ network-object object Net_Gresham_Street_TEST_LAN
+ network-object object Net_Goswell_Road_Mondrian_DMZ
+ network-object object Net_Hopton_Street_Mondrian_DMZ
+object-group network Hosts_UBS_InterDealer_Srvs
+ network-object object Host_UBS_InterDealer_Srv3
+ network-object object Host_UBS_InterDealer_Srv2
+ network-object object Host_UBS_InterDealer_Srv1
+object-group service GRP-SVC-FactSet_Services tcp
+ port-object eq 6670
+ port-object eq 6671
+ port-object eq 6672
+ port-object eq www
+ port-object eq https
+object-group network OBJ-GRP-Bloomberg_Networks
+ network-object object OBJ-NET-Bloomberg_01
+ network-object object OBJ-NET-Bloomberg_02
+ network-object object OBJ-NET-Bloomberg_03
+ network-object object OBJ-NET-Bloomberg_04
+ network-object object OBJ-NET-Bloomberg_05
+ network-object object OBJ-NET-Bloomberg_06
+object-group service GRP-SRV-ITG_Ports tcp
+ port-object eq 1414
+ port-object eq 15008
+ port-object eq www
+ port-object eq telnet
+object-group network BlueSource_Backup
+ network-object object BLU_NET_10.211.146.0
+ network-object object BLU_NET_10.211.161.0
+ network-object object BLU_NET_10.211.162.0
+ network-object object BLU_NET_10.211.163.0
+ network-object object BLU_NET_172.17.60.224
+ network-object object BLU_NET_172.17.61.224
+object-group network Net_Bloomberg_Data_Networks
+ network-object object Net_Bloomberg_LAN_2_UK
+ network-object object Net_Bloomberg_LAN_1_UK
+ network-object object Net_Bloomberg_LAN_5_UK
+object-group network Hosts_ITG_UAT_Servers
+ network-object object Host_ITG_UAT_1
+ network-object object Host_ITG_UAT_MQServer
+ network-object object Host_ITG_UAT_WebServer
+object-group network Srv_Exchange_Environment
+object-group service OBJ-PRT-Bloomberg_TCP tcp
+ port-object range 1024 50001
+ port-object eq 48129
+ port-object range 8194 8198
+ port-object range 8209 8220
+ port-object range 8290 8294
+ port-object eq 8228
+object-group network UBS-NETS
+ network-object object UBS2
+ network-object object ubs3
+object-group service HTTP-HTTPS tcp
+ port-object eq www
+ port-object eq https
+object-group service HTTP-HTTPS-FTP tcp
+ port-object eq www
+ port-object eq https
+ port-object eq ftp
+object-group service HTTP-HTTPS-SSH tcp
+ port-object eq www
+ port-object eq https
+ port-object eq ssh
+object-group service MONITOR-PORTS tcp
+ port-object eq www
+ port-object eq https
+ port-object eq ftp
+ port-object eq smtp
+ port-object eq 5567
+object-group service HTTP-HTTPS-23560 tcp
+ port-object eq www
+ port-object eq https
+ port-object eq 23560
+object-group network Net_Mondrian_Networks-DMZ
+ network-object object Net_Goswell_Road_Mondrian_DMZ
+ network-object object Net_Hopton_Street_Mondrian_DMZ
+object-group network GRP-HST-Internal_DNS
+ network-object object OBJ-HST-DC1MON01C
+ network-object object OBJ-HST-DC1DOM04C
+ network-object object OBJ-HST-DC1DOM03C
+ network-object object OBJ-HST-DC1DOM02C
+ network-object object OBJ-HST-DC1DOM01C
+ network-object object OBJ-HST-PHLDOM01C
+ network-object object OBJ-HST-PHLDOM02C
+object-group network GRP-NET-Mondrian_Networks
+ network-object object OBJ-NET-VLAN220_DC1_Management
+ network-object object OBJ-NET-VLAN222_DC2_Management
+ network-object object OBJ-NET-VLAN100_Servers
+ network-object object OBJ-NET-VLAN1_PHL_LAN
+ network-object object OBJ-NET-VLAN2_Gresham_Voice
+ network-object object OBJ-NET-VLAN1_GRE_Workstations
+object-group network GRP-HST-FX_Connect
+ network-object object OBJ-HST-FX_Connect_01
+ network-object object OBJ-HST-FX_Connect_02
+ network-object object OBJ-HST-FX_Connect_03
+ network-object object OBJ-HST-FX_Connect_04
+ network-object object OBJ-HST-FX_Connect_05
+ network-object object OBJ-HST-FX_Connect_06
+object-group network GRP-NET-FactSet_Servers
+ network-object object OBJ-HST-FactSet_01
+ network-object object OBJ-HST-FactSet_02
+ network-object object OBJ-HST-FactSet_03
+ network-object object OBJ-HST-FactSet_04
+ network-object object OBJ-HST-FactSet_05
+ network-object object OBJ-HST-FactSet_06
+ network-object object OBJ-HST-FactSet_07
+ network-object object OBJ-NET-FactSet_08
+object-group service GRP-SRV-FactSet_Services tcp
+ port-object eq 6670
+ port-object eq 6671
+ port-object eq 6672
+ port-object eq www
+ port-object eq https
+object-group network GRP-OBJ-Servers_FTP_Access
+ network-object object OBJ-HST-REGENT
+ network-object object OBJ-HST-CORNHILL
+ network-object object OBJ-HST-CUBITT
+object-group network GRP-OBJ-Servers_SSH_Access
+ network-object object OBJ-HST-REGENT
+ network-object object OBJ-HST-CORNHILL
+ network-object object OBJ-HST-CUBITT
+ network-object object OBJ-HST-nrr-sftp-uat.abide-financial.com
+ network-object object OBJ-HST-nrr-sftp-prd.abide-financial.com
+object-group network GRP-HST-CAP_IQ_Servers
+ network-object object OBJ-HST-CAP_IQ_Server_01
+ network-object object OBJ-HST-CAP_IQ_Server_02
+object-group network GRP-HST-Workstation_Special_Access
+ network-object object OBJ-HST-Workstation_Paul_Gannaway
+ network-object object OBJ-HST-Workstation_Sam_Elliott
+ network-object object OBJ-HST-Workstation_John_Clare
+ network-object object OBJ-HST-Workstation_Jimmy_Findiklis
+ network-object object OBJ-HST-Workstation_SEI_Mutual_Fund_Download
+ network-object object OBJ-HST-Workstation_Matthew_Shanahan
+ network-object object OBJ-HST-Workstation_James_McNeilage
+object-group network GRP-NET-UBS_Servers
+ network-object object OBJ-NET-UBS_Server_01
+ network-object object OBJ-NET-UBS_Server_02
+ network-object object OBJ-NET-UBS_Server_03
+ network-object object OBJ-NET-UBS_Server_04
+ network-object object OBJ-NET-UBS_Server_05
+ network-object object OBJ-NET-UBS_Server_06
+ network-object object OBJ-NET-UBS_Server_07
+ network-object object OBJ-NET-UBS_Server_08
+ network-object object OBJ-NET-UBS_Server_09
+ network-object object OBJ-NET-UBS_Server_10
+ network-object object OBJ-NET-UBS_Server_11
+ network-object object OBJ-NET-UBS_Server_12
+ network-object object OBJ-NET-UBS_Server_13
+ network-object object OBJ-HST-UNS_Server_14
+ network-object object OBJ-HST-UNS_Server_15
+object-group network GRP-HST-NTP_Servers
+ network-object object OBJ-HST-DC1DOM02C
+ network-object object OBJ-HST-DC1DOM01C
+object-group network GRP-HST-EPO_Updates
+ network-object object OBJ-HST-EPO_Update_01
+ network-object object OBJ-HST-EPO_Update_02
+object-group network GRP-HST-MobileIron_Servers
+ network-object object OBJ-HST-SENTRY.MONDRIAN.COM
+ network-object object OBJ-HST-CORE.MONDRIAN.COM
+object-group network GRP-HST-Mondrian_Monitoring_Servers
+ network-object object OBJ-HST-DC1MON01C
+ network-object object OBJ-HST-DC2MON02C
+object-group network GRP-HST-3PAR_HQ
+ network-object object OBJ-HST-3PAR_HQ_03
+ network-object object OBJ-HST-3PAR_HQ_04
+ network-object object OBJ-HST-3PAR_HQ_05
+ network-object object OBJ-HST-3PAR_HQ_06
+ network-object object OBJ-HST-3PAR_HQ_07
+ network-object object OBJ-HST-3PAR_HQ_01
+ network-object object OBJ-HST-3PAR_HQ_02
+ network-object object OBJ-HST-3PAR_HQ_08
+ network-object object OBJ-HST-3PAR_HQ_09
+ network-object object OBJ-HST-3PAR_HQ_10
+ network-object object OBJ-HST-3PAR_HQ_11
+ network-object object OBJ-HST-3PAR_HQ_12
+ network-object object OBJ-HST-3PAR_HQ_13
+ network-object object OBJ-HST-3PAR_HQ_14
+ network-object object OBJ-HST-3PAR_HQ_15
+ network-object object OBJ-HST-3PAR_HQ_16
+ network-object object OBJ-HST-3PAR_HQ_17
+ network-object object OBJ-HST-3PAR_HQ_18
+ network-object object OBJ-HST-3PAR_HQ_19
+ network-object object OBJ-HST-3PAR_HQ_20
+ network-object object OBJ-HST-3PAR_HQ_21
+ network-object object OBJ-HST-3PAR_HQ_22
+ network-object object OBJ-HST-3PAR_HQ_23
+ network-object object OBJ-HST-3PAR_HQ_24
+ network-object object OBJ-HST-3PAR_HQ_25
+ network-object object OBJ-HST-3PAR_HQ_26
+ network-object object OBJ-HST-3PAR_HQ_27
+object-group network GRP-HST-BES_Remote
+ network-object object OBJ-HST-BES_Remote_01
+ network-object object OBJ-HST-BES_Remote_02
+ network-object object OBJ-HST-BES_Remote_03
+ network-object object OBJ-HST-BES_Remote_04
+object-group network GRP-HST-Google_DNS
+ network-object object OBJ-HST-Google_DNS_Primary
+ network-object object OBJ-HST-Google_DNS_Secondary
+object-group network GRP-HST-Threatpulse
+ network-object object OBJ-HST-Threatpulse_Host_France
+ network-object object OBJ-HST-Threatpulse_Host_Germany
+ network-object object OBJ-HST-Threatpulse_Host_UK1
+ network-object object OBJ-HST-Threatpulse_Host_UK2
+ network-object object OBJ-HST-Threatpulse_Host_UK3
+ network-object object OBJ-HST-Threatpulse_Host_UK4
+ network-object object OBJ-HST-Threatpulse_Host_UK5
+ network-object object OBJ-HST-Threatpulse_Host_UK6
+ network-object object OBJ-HST-auth.threatpulse.com_1
+ network-object object OBJ-HST-auth.threatpulse.com_2
+ network-object object OBJ-HST-portal.threatpulse.com
+object-group network GRP-HST-BluecoatSGs
+ network-object object OBJ-HST-BluecoatSG_Philadelphia_VIP
+ network-object object OBJ-HST-BluecoatSG_Philadelphia_Primary
+ network-object object OBJ-HST-BluecoatSG_Philadelphia_Secondary
+ network-object object OBJ-HST-BluecoatSG_Gresham_VIP
+ network-object object OBJ-HST-BluecoatSG_Gresham_Primary
+ network-object object OBJ-HST-BluecoatSG_Gresham_Secondary
+object-group network GRP-HST-Gresham_Mitel_Controllers
+ network-object object OBJ-HST-Gresham_Mitel_Controller_Primary
+ network-object object OBJ-HST-Gresham_Mitel_Controller_Secondary
+ network-object object OBJ-HST-mondc1-mivb01
+ network-object object OBJ-HST-mondc1-sip01
+ network-object object OBJ-HST-mondc1-src01
+ network-object object OBJ-HST-mondc2-mivb02
+ network-object object OBJ-HST-mondc2-sip02
+ network-object object OBJ-HST-mondc2-src02
+object-group network GRP-HST-Bloomberg_FTP
+ network-object object OBJ-HST-Bloomberg_FTP_01
+ network-object object OBJ-HST-Bloomberg_FTP_02
+object-group network GRP-HST-Bloomberg_SFTP
+ network-object object OBJ-HST-Bloomberg_SFTP_01
+ network-object object OBJ-HST-Bloomberg_SFTP_02
+object-group network GRP-HST-Trend_Updates_IUA
+ network-object object OBJ-HST-Trend_Updates_IUA_01
+ network-object object OBJ-HST-Trend_Updates_IUA_02
+ network-object object OBJ-HST-Trend_Updates_IUA_03
+object-group network GRP-NET-All_Servers
+ network-object object OBJ-NET-VLAN100_Servers
+ network-object object OBJ-NET-VLAN1_PHL_LAN
+ network-object object OBJ-NET-VLAN300_Servers
+ network-object object OBJ-NET-VLAN101_Servers
+ network-object object OBJ-NET-VLAN102_Servers
+object-group service webports
+ service-object tcp destination eq www 
+ service-object tcp destination eq https 
+object-group network GRP-HST-Proxy_Bypass_Barcap.com
+ network-object object OBJ-HST-Proxy_ByPass_Barcap.com_01
+ network-object object OBJ-HST-Proxy_ByPass_Barcap.com_02
+ network-object object OBJ-HST-Proxy_ByPass_Barcap.com_03
+ network-object object OBJ-HST-Proxy_ByPass_Barcap.com_04
+ network-object object OBJ-HST-Proxy_ByPass_Barcap.com_05
+ network-object object OBJ-HST-Proxy_ByPass_Barcap.com_06
+ network-object object OBJ-HST-Proxy_ByPass_Barcap.com_07
+object-group network GRP-HST-Proxy_ByPass_Blackberrys
+ network-object object OBJ-HST-Proxy_ByPass_Blackberry_01
+ network-object object OBJ-HST-Proxy_ByPass_Blackberry_02
+ network-object object OBJ-HST-Proxy_ByPass_Blackberry_03
+ network-object object OBJ-HST-Proxy_ByPass_Blackberry_04
+ network-object object OBJ-HST-Proxy_ByPass_Blackberry_05
+object-group network GRP-HST-Proxy_ByPass_Interactive_Data
+ network-object object OBJ-HST-Proxy_ByPass_Interactive_Data_01
+ network-object object OBJ-HST-Proxy_ByPass_Interactive_Data_02
+ network-object object OBJ-HST-Proxy_ByPass_Interactive_Data_03
+ network-object object OBJ-HST-Proxy_ByPass_Interactive_Data_04
+object-group network GRP-HST-Proxy_ByPass_MarketAxess
+ network-object object OBJ-HST-Proxy_ByPass_MarketAxess_01
+ network-object object OBJ-HST-Proxy_ByPass_MarketAxess_02
+ network-object object OBJ-HST-Proxy_ByPass_MarketAxess_03
+ network-object object OBJ-HST-Proxy_ByPass_MarketAxess_04
+object-group network GRP-HST-Proxy_ByPass_State_Street
+ network-object object OBJ-HST-Proxy_ByPass_State_Street_01
+ network-object object OBJ-HST-Proxy_ByPass_State_Street_02
+object-group network GRP-HST-Proxy_Bypass_TradeWeb
+ network-object object OBJ-HST-Proxy_ByPass_TradeWeb_01
+ network-object object OBJ-HST-Proxy_ByPass_TradeWeb_02
+ network-object object OBJ-HST-Proxy_ByPass_TradeWeb_03
+ network-object object OBJ-HST-Proxy_ByPass_TradeWeb_04
+ network-object object OBJ-HST-Proxy_ByPass_TradeWeb_05
+ network-object object OBJ-HST-Proxy_ByPass_TradeWeb_06
+ network-object object OBJ-HST-Proxy_ByPass_TradeWeb_07
+object-group network GRP-HST-Proxy_Bypass_All
+ group-object GRP-HST-Proxy_Bypass_Barcap.com
+ group-object GRP-HST-Proxy_ByPass_Blackberrys
+ group-object GRP-HST-Proxy_ByPass_Interactive_Data
+ group-object GRP-HST-Proxy_ByPass_MarketAxess
+ group-object GRP-HST-Proxy_ByPass_State_Street
+ group-object GRP-HST-Proxy_Bypass_TradeWeb
+ network-object object OBJ-HST-Proxy_ByPass_Appserve_Technologies
+ network-object object OBJ-HST-Proxy_ByPass_Amazon
+ network-object object OBJ-HST-Proxy_ByPass_California_State_Teachers
+ network-object object OBJ-HST-Proxy_ByPass_Den_Norske_Bank
+ network-object object OBJ-HST-Proxy_ByPass_IBM
+ network-object object OBJ-HST-Proxy_ByPass_JPMorgan_Chase
+ network-object object OBJ-HST-Proxy_ByPass_Camelot_UK_Lottery
+ network-object object OBJ-HST-Proxy_ByPass_Fused
+ network-object object OBJ-HST-Proxy_ByPass_Hewitt_Associates
+ network-object object OBJ-HST-Proxy_ByPass_L3_Comminications
+ network-object object OBJ-HST-Proxy_ByPass_Littler_Menelson
+ network-object object OBJ-HST-Proxy_ByPass_MacGregor.Net
+ network-object object OBJ-HST-Proxy_ByPass_Messagelabs
+ network-object object OBJ-HST-Proxy_ByPass_Satuit
+ group-object GRP-HST-Proxy_Bypass_Trioptima
+ network-object object OBJ-HST-Proxy_ByPass_Portal.Mondrian.Com
+ network-object object OBJ-HST-Proxy_ByPass_Interactive_Data_ChallengePortal_01
+ network-object object OBJ-HST-Proxy_ByPass_Interactive_Data_ChallengePortal_02
+ network-object object OBJ-HST-Proxy_ByPass_Interactive_Data_Services
+ network-object object OBJ-HST-Proxy_ByPass_Interactive_Data_Services_01
+object-group network GRP-HST-Message_Labs
+ network-object object OBJ-HST-Message_Labs_01
+ network-object object OBJ-HST-Message_Labs_11
+ network-object object OBJ-HST-Message_Labs_12
+ network-object object OBJ-HST-Message_Labs_02
+ network-object object OBJ-HST-Message_Labs_03
+ network-object object OBJ-HST-Message_Labs_04
+ network-object object OBJ-HST-Message_Labs_05
+ network-object object OBJ-HST-Message_Labs_06
+ network-object object OBJ-HST-Message_Labs_07
+ network-object object OBJ-HST-Message_Labs_08
+ network-object object OBJ-HST-Message_Labs_09
+ network-object object OBJ-HST-Message_Labs_10
+object-group network GRP-HST-Exchange_Servers
+ network-object object OBJ-HST-KINGSWAY
+ network-object object OBJ-HST-LIMEHOUSE
+ network-object object OBJ-HST-DC1XCH01C
+ network-object object OBJ-HST-DC1XCH02C
+ network-object object OBJ-HST-DC2XCH03C
+ network-object object OBJ-HST-DC2XCH04C
+object-group network GRP-HST-Autex_Hosts
+ network-object object OBJ-HST-Autex_01
+ network-object object OBJ-HST-Autex_02
+ network-object object OBJ-HST-Autex_03
+ network-object object OBJ-HST-Autex_04
+object-group network GRP-HST-TradeWeb_Market_Access
+ network-object object OBJ-HST-TradeWeb_Market_Access_01
+ network-object object OBJ-HST-TradeWeb_Market_Access_02
+ network-object object OBJ-HST-TradeWeb_Market_Access_03
+ network-object object OBJ-HST-TradeWeb_Market_Access_04
+ network-object object OBJ-HST-TradeWeb_Market_Access_05
+object-group service OBJ-PRT-Bloomberg_UDP udp
+ port-object range 48129 48137
+ port-object eq ntp
+object-group service OBJ-PRT-Bloomberg_Research tcp
+ port-object eq 423
+ port-object eq ftp
+ port-object eq telnet
+object-group network OBJ-GRP-Thomson_Reuters_Eikon
+ network-object object OBJ-NET-Thomson_Reuters_Eikon_01
+ network-object object OBJ-NET-Thomson_Reuters_Eikon_02
+ network-object object OBJ-NET-Thomson_Reuters_Eikon_03
+ network-object object OBJ-NET-Thomson_Reuters_Eikon_04
+object-group network GRP-NET-Thomson_Reuters_Eikon
+ network-object object OBJ-HST-Thomson_Reuters_AMERS1
+ network-object object OBJ-HST-Thomson_Reuters_EMEA
+ network-object object OBJ-NET-Thomson_Reuters_Eikon_01
+ network-object object OBJ-NET-Thomson_Reuters_Eikon_02
+ network-object object OBJ-NET-Thomson_Reuters_Eikon_03
+ network-object object OBJ-NET-Thomson_Reuters_Eikon_04
+ network-object object OBJ-NET-Thomson_Reuters_Networks
+ network-object object OBJ-HST-Thomson_Reuters_AMERS2
+ network-object object OBJ-HST-MON_GOS_RADIANZ
+object-group network GRP-HST-Proxy_Bypass_all
+ network-object object OBJ-HST-www.mondrian.com
+access-list acl_outside_in remark *** Rule-001:OWA ***
+access-list acl_outside_in extended permit tcp any object OBJ-HST-Limehouse eq https 
+access-list acl_outside_in remark *** Rule-002:AWS External Monitoring ***
+access-list acl_outside_in extended permit icmp object OBJ-HST-AWS_VM any 
+access-list acl_outside_in remark *** Rule-003:Remote1 Access ***
+access-list acl_outside_in extended permit tcp any object OBJ-HST-remote1.mondrian.com eq 4500 
+access-list acl_outside_in extended permit tcp any object OBJ-HST-remote1.mondrian.com eq www 
+access-list acl_outside_in extended permit tcp any object OBJ-HST-remote1.mondrian.com eq https 
+access-list acl_outside_in remark *** Rule-004:MobileIron ***
+access-list acl_outside_in extended permit tcp any object OBJ-HST-CORE.MONDRIAN.COM object-group OBJ-SVC-MobileIron 
+access-list acl_outside_in extended permit tcp any object OBJ-HST-SENTRY.MONDRIAN.COM object-group OBJ-SVC-MobileIron 
+access-list acl_outside_in remark *** Rule-005:MessageLabs ***
+access-list acl_outside_in extended permit tcp object-group GRP-HST-Message_Labs object OBJ-HST-Limehouse eq smtp 
+access-list acl_outside_in remark *** Rule-006:Gresham St Video Conferencing ***
+access-list acl_outside_in extended permit tcp any object OBJ-HST-Gresham_St_VideoConf eq h323 
+access-list acl_outside_in extended permit udp any object OBJ-HST-Gresham_St_VideoConf eq 1720 
+access-list acl_outside_in extended permit tcp any object OBJ-HST-Gresham_St_VideoConf range 3230 3241 
+access-list acl_outside_in extended permit udp any object OBJ-HST-Gresham_St_VideoConf range 3230 3291 
+access-list acl_inside_in extended permit ip host 10.202.80.1 host 217.10.128.174 
+access-list acl_inside_in extended permit ip host 10.202.100.3 host 217.10.128.174 
+access-list acl_inside_in remark ******************************************************************************************
+access-list acl_inside_in remark *** Rule-001: DNS (UDP) ***
+access-list acl_inside_in extended permit udp object-group GRP-HST-Internal_DNS any eq domain 
+access-list acl_inside_in remark *** Rule-002: DNS (TCP) ***
+access-list acl_inside_in extended permit tcp object-group GRP-HST-Internal_DNS any eq domain 
+access-list acl_inside_in remark *** Rule-003: ICMP ***
+access-list acl_inside_in extended permit icmp object-group GRP-NET-Mondrian_Networks any 
+access-list acl_inside_in remark *** Rule-004: FX Connect (7014) ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-HST-FX_Connect eq 7014 
+access-list acl_inside_in remark *** Rule-005: FX Connect (HTTPS) ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-HST-FX_Connect eq https 
+access-list acl_inside_in remark *** Rule-006: Amazon Web Services (AWS) Access ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-Amazon_Web_Services eq 3389 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-Amazon_Web_Services eq 3389 
+access-list acl_inside_in remark *** Rule-007: Franking Machine ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-Franking_Machine object OBJ-HST-UK_Meter_Services_Neo_Post eq https 
+access-list acl_inside_in remark *** Rule-008: IT Jump On Box Direct Internet Access ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-IT_Jump_On_Box any eq www 
+access-list acl_inside_in extended permit tcp object OBJ-HST-IT_Jump_On_Box any eq https 
+access-list acl_inside_in remark *** Rule-009: Server FTP and SSH Access ***
+access-list acl_inside_in extended permit tcp object-group GRP-OBJ-Servers_FTP_Access any eq 2222 
+access-list acl_inside_in extended permit tcp object-group GRP-OBJ-Servers_SSH_Access any eq ssh 
+access-list acl_inside_in extended permit tcp object-group GRP-OBJ-Servers_FTP_Access any eq ftp 
+access-list acl_inside_in remark *** Rule-010: PTA Connect ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-PTA_Connect eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-PTA_Connect eq https 
+access-list acl_inside_in remark *** Rule-011: TradeWeb Web Client Access ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-TradeWeb_WebClient_Server eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-TradeWeb_WebClient_Server eq https 
+access-list acl_inside_in remark *** Rule-012: FactSet Server and Workstation Access ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-NET-FactSet_Servers object-group GRP-SVC-FactSet_Services 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-NET-FactSet_Servers object-group GRP-SVC-FactSet_Services 
+access-list acl_inside_in remark *** Rule-013: Infrastructure Workstations FTP & SSH Access ***
+access-list acl_inside_in extended permit tcp object-group GRP-HST-Workstation_Special_Access any eq ftp 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-Workstation_Special_Access any eq ssh 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-Workstation_Special_Access any eq telnet 
+access-list acl_inside_in remark *** Rule-014: UBS Neo Access ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-NET-UBS_Servers eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-NET-UBS_Servers eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-NET-UBS_Servers eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-NET-UBS_Servers eq https 
+access-list acl_inside_in remark *** Rule-015: Capital IQ (Cap IQ) Download ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-ROMFORD object-group GRP-HST-CAP_IQ_Servers eq ftp 
+access-list acl_inside_in remark *** Rule-016:Red Box Recorder Access ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-Worksmart_Server eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-Worksmart_Server eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-Worksmart_Server eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-Worksmart_Server eq https 
+access-list acl_inside_in remark *** Rule-017:NTP Access ***
+access-list acl_inside_in extended permit udp object-group GRP-HST-NTP_Servers any eq ntp 
+access-list acl_inside_in remark *** Rule-018:Mansell St Access ***
+access-list acl_inside_in extended permit ip object OBJ-NET-VLAN100_Servers object OBJ-NET-Mansell_Street 
+access-list acl_inside_in extended permit ip object OBJ-NET-VLAN1_GRE_Workstations object OBJ-NET-Mansell_Street 
+access-list acl_inside_in extended permit ip object OBJ-NET-VLAN1_PHL_LAN object OBJ-NET-Mansell_Street 
+access-list acl_inside_in remark *** Rule-019:Trend Updates ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-DC1TRN01N object-group GRP-HST-Trend_Updates_IUA eq https 
+access-list acl_inside_in extended permit tcp object-group GRP-NET-All_Servers object OBJ-HST-Trend_Updates_Smart_Scan eq www 
+access-list acl_inside_in remark *** Rule-020:McAfee EPO Updates
+access-list acl_inside_in extended permit tcp object OBJ-HST-DC1EPO01N object-group GRP-HST-EPO_Updates eq www 
+access-list acl_inside_in extended permit tcp object OBJ-HST-DC1EPO01N object-group GRP-HST-EPO_Updates eq https 
+access-list acl_inside_in remark *** Rule-021:Shavlik download access (Patching) ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-DC1PAT01N any eq www 
+access-list acl_inside_in extended permit tcp object OBJ-HST-DC1PAT01N any eq https 
+access-list acl_inside_in remark *** Rule-022:BNY Mellon Access ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-BNY_Mellon_Server eq 1443 
+access-list acl_inside_in remark *** Rule-023:BES Direct Internet Access ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-SHEEN any eq https 
+access-list acl_inside_in extended permit tcp object OBJ-HST-SHEEN any eq www 
+access-list acl_inside_in extended permit tcp object OBJ-HST-SHEEN any eq ftp 
+access-list acl_inside_in remark *** Rule-024:6DG PRTG Monitoring ***
+access-list acl_inside_in extended permit udp object OBJ-HST-MONLD1-VUM object OBJ-HST-DMZ_Switch eq snmp 
+access-list acl_inside_in remark *** Rule-025:Monitoring Servers access to anywhere ***
+access-list acl_inside_in extended permit ip object-group GRP-HST-Mondrian_Monitoring_Servers any 
+access-list acl_inside_in remark *** Rule-026:MobileIron ***
+access-list acl_inside_in extended permit tcp object-group GRP-HST-MobileIron_Servers any eq www 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-MobileIron_Servers any eq https 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-MobileIron_Servers any eq 2195 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-MobileIron_Servers any eq 2196 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-MobileIron_Servers any eq ssh 
+access-list acl_inside_in remark *** Rule-027:6DG PRTG Updates ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-MONLD1-VUM object OBJ-HST-6DG_PRTG_Updates eq www 
+access-list acl_inside_in extended permit tcp object OBJ-HST-MONLD1-VUM object OBJ-HST-6DG_PRTG_Updates eq https 
+access-list acl_inside_in extended permit tcp object OBJ-HST-MONLD1-VUM object OBJ-HST-6DG_PRTG_Updates eq 23560 
+access-list acl_inside_in remark *** Rule-028:HP 3PAR Phone Home ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN220_DC1_Management object-group GRP-HST-3PAR_HQ eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN222_DC2_Management object-group GRP-HST-3PAR_HQ eq https 
+access-list acl_inside_in remark *** Rule-029:Cloud vLAN DNS ***
+access-list acl_inside_in extended permit udp object OBJ-NET-VLAN220_DC1_Management object-group GRP-HST-Google_DNS eq dnsix 
+access-list acl_inside_in extended permit udp object OBJ-NET-VLAN222_DC2_Management object-group GRP-HST-Google_DNS eq dnsix 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN222_DC2_Management object-group GRP-HST-Google_DNS eq domain 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN220_DC1_Management object-group GRP-HST-Google_DNS eq domain 
+access-list acl_inside_in remark *** Rule-030:Blackberry Enterprise Server (BES) Access ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-SHEEN object-group GRP-HST-BES_Remote eq 3101 
+access-list acl_inside_in remark *** Rule-031:Threatpulse Access ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-HST-Threatpulse eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-HST-Threatpulse eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN222_DC2_Management object-group GRP-HST-Threatpulse eq 8080 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN220_DC1_Management object-group GRP-HST-Threatpulse eq 8080 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-HST-Threatpulse eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-HST-Threatpulse eq www 
+access-list acl_inside_in remark *** Rule-032:BluecoatSG Access ***
+access-list acl_inside_in extended permit tcp object-group GRP-HST-BluecoatSGs any eq www 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-BluecoatSGs any eq https 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-BluecoatSGs any eq 8080 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-BluecoatSGs any eq 8443 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-BluecoatSGs any eq ftp 
+access-list acl_inside_in extended permit udp object-group GRP-HST-BluecoatSGs any eq dnsix 
+access-list acl_inside_in remark *** Rule-033:Mitel Phone Home ***
+access-list acl_inside_in extended permit tcp object-group GRP-HST-Gresham_Mitel_Controllers object OBJ-HST-Mitel_Phone_Home eq ssh 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-Gresham_Mitel_Controllers object OBJ-HST-Mitel_Phone_Home eq https 
+access-list acl_inside_in remark *** Rule-034:Bloomberg FTP Download ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-Bloomberg_FTP_02 eq ftp 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-Bloomberg_FTP_03 eq ftp 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-Bloomberg_FTP_02 eq ftp 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-Bloomberg_FTP_03 eq ftp 
+access-list acl_inside_in extended permit tcp object OBJ-HST-CORNHILL object-group GRP-HST-Bloomberg_FTP eq 30206 
+access-list acl_inside_in remark *** Rule-035:Bloomberg SFTP Download ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-DC1MON01C object-group GRP-HST-Bloomberg_SFTP eq 30206 
+access-list acl_inside_in extended permit tcp object OBJ-HST-CORNHILL object-group GRP-HST-Bloomberg_SFTP eq 30206 
+access-list acl_inside_in extended permit tcp object OBJ-HST-Workstation_Julian_Siedlecki object-group GRP-HST-Bloomberg_SFTP eq 30206 
+access-list acl_inside_in extended permit tcp object OBJ-HST-Workstation_Myles_Faulkner object-group GRP-HST-Bloomberg_SFTP eq 30206 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-HST-Threatpulse eq 8080 
+access-list acl_inside_in remark *** Rule-036:Proxy Bypass (HTTPS & WWW) ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-HST-Proxy_Bypass_All eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-HST-Proxy_Bypass_All eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_PHL_LAN object-group GRP-HST-Proxy_Bypass_All eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-HST-Proxy_Bypass_All eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-HST-Proxy_Bypass_All eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_PHL_LAN object-group GRP-HST-Proxy_Bypass_All eq https 
+access-list acl_inside_in remark *** Rule-037:Proxy Bypass (FTP) ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-HST-Proxy_ByPass_Interactive_Data eq ftp 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-HST-Proxy_ByPass_Interactive_Data eq ftp 
+access-list acl_inside_in remark *** Rule-038:ITG Access ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-COLLIER object Host_ITG_PROD_MQServer eq 1414 
+access-list acl_inside_in extended permit tcp object OBJ-HST-MORDEN object OBJ-HST-ITG_MQ_Server object-group GRP-SRV-ITG_Ports 
+access-list acl_inside_in extended permit tcp object OBJ-HST-KENTON object OBJ-HST-ITG_MQ_Server object-group GRP-SRV-ITG_Ports 
+access-list acl_inside_in extended permit tcp object OBJ-HST-HESTON object OBJ-HST-ITG_MQ_Server object-group GRP-SRV-ITG_Ports 
+access-list acl_inside_in remark *** Rule-039:GoToMyPC/ Citrix ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations any eq 8200 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers any eq 8200 
+access-list acl_inside_in remark *** Rule-040:KMS Phone Home ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-GUTTER any eq https 
+access-list acl_inside_in extended permit tcp object OBJ-HST-GUTTER any eq www 
+access-list acl_inside_in remark *** Rule-041:Web Management of DMZ Switch ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-Goswell_Road_DMZ_Stack eq telnet 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-Goswell_Road_DMZ_Stack eq telnet 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-Goswell_Road_DMZ_Stack eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-Goswell_Road_DMZ_Stack eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-Goswell_Road_DMZ_Stack eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object OBJ-HST-Goswell_Road_DMZ_Stack eq www 
+access-list acl_inside_in remark *** Temporary Rule - New Pulse Secure Appliance ***
+access-list acl_inside_in extended permit tcp any host 172.19.1.50 eq www 
+access-list acl_inside_in extended permit tcp any host 172.19.1.50 eq https 
+access-list acl_inside_in remark *** Rule-043:Autex ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-FINSBURY object-group GRP-HST-Autex_Hosts eq 8615 
+access-list acl_inside_in extended permit tcp object OBJ-HST-FINSBURY object-group GRP-HST-Autex_Hosts range 7000 7024 
+access-list acl_inside_in extended permit tcp object OBJ-HST-FINSBURY object-group GRP-HST-Autex_Hosts range 8605 8609 
+access-list acl_inside_in remark *** Rule-044:Bloomberg Fixed Income Electronic Trading ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-FINSBURY object OBJ-HST-Bloomberg_FIET_Hub eq 20365 
+access-list acl_inside_in remark *** Rule-045:New York FIX ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-FINSBURY object OBJ-HST-NYFIX eq 19077 
+access-list acl_inside_in remark *** Rule-046:TradeWeb Market Access ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-FINSBURY object-group GRP-HST-TradeWeb_Market_Access eq www 
+access-list acl_inside_in extended permit tcp object OBJ-HST-FINSBURY object-group GRP-HST-TradeWeb_Market_Access eq https 
+access-list acl_inside_in remark *** Rule-047:Real Time Messaging Protocol (RTMP) ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers any eq 1935 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations any eq 1935 
+access-list acl_inside_in remark *** Rule-048:Internal Access to remote1.mondrian.com ***
+access-list acl_inside_in extended permit ip object OBJ-NET-VLAN1_GRE_Workstations object OBJ-HST-remote1.mondrian.com 
+access-list acl_inside_in extended permit ip object OBJ-NET-VLAN100_Servers object OBJ-HST-remote1.mondrian.com 
+access-list acl_inside_in remark *** Rule-049:Remote Access DHCP ***
+access-list acl_inside_in extended permit ip object OBJ-NET-VLAN100_Servers object OBJ-NET-Goswell_Road_Remote_Access_DHCP 
+access-list acl_inside_in extended permit ip object OBJ-NET-VLAN1_GRE_Workstations object OBJ-NET-Goswell_Road_Remote_Access_DHCP 
+access-list acl_inside_in extended permit ip object OBJ-NET-VLAN1_PHL_LAN object OBJ-NET-Goswell_Road_Remote_Access_DHCP 
+access-list acl_inside_in remark *** Rule-50:Bloomberg (TCP)
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group OBJ-GRP-Bloomberg_Networks object-group OBJ-PRT-Bloomberg_TCP 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group OBJ-GRP-Bloomberg_Networks object-group OBJ-PRT-Bloomberg_TCP 
+access-list acl_inside_in remark *** Rule-51:Bloomberg (UDP)
+access-list acl_inside_in extended permit udp object OBJ-NET-VLAN100_Servers object-group OBJ-GRP-Bloomberg_Networks object-group OBJ-PRT-Bloomberg_UDP 
+access-list acl_inside_in extended permit udp object OBJ-NET-VLAN1_GRE_Workstations object-group OBJ-GRP-Bloomberg_Networks object-group OBJ-PRT-Bloomberg_UDP 
+access-list acl_inside_in remark *** Rule-52:Temporary Exchange Rule
+access-list acl_inside_in extended permit tcp object OBJ-HST-LIMEHOUSE any eq www 
+access-list acl_inside_in extended permit tcp object OBJ-HST-LIMEHOUSE any eq https 
+access-list acl_inside_in remark *** Rule-53:Thomson Reuters Eikon ***
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-NET-Thomson_Reuters_Eikon eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-NET-Thomson_Reuters_Eikon eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-NET-Thomson_Reuters_Eikon eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN1_GRE_Workstations object-group GRP-NET-Thomson_Reuters_Eikon eq https 
+access-list acl_inside_in remark *** Rule-54: Gresham St Video Conferencing ***
+access-list acl_inside_in extended permit tcp object OBJ-HST-Gresham_St_VideoConf any eq h323 
+access-list acl_inside_in extended permit tcp object OBJ-HST-Gresham_St_VideoConf any range 3230 3241 
+access-list acl_inside_in extended permit udp object OBJ-HST-Gresham_St_VideoConf any eq 1720 
+access-list acl_inside_in extended permit udp object OBJ-HST-Gresham_St_VideoConf any range 3230 3291 
+access-list acl_inside_in extended permit tcp object OBJ-NET-VLAN100_Servers object-group GRP-HST-Threatpulse eq 8080 
+access-list acl_inside_in extended permit tcp object OBJ-NET-Mansell_Street object-group GRP-HST-Threatpulse eq https 
+access-list acl_inside_in extended permit tcp object OBJ-NET-Mansell_Street object-group GRP-HST-Threatpulse eq www 
+access-list acl_inside_in extended permit tcp object OBJ-NET-Mansell_Street object-group GRP-HST-Threatpulse eq 8080 
+access-list acl_inside_in remark *** Rule-55:Exchange Servers Internet Access ***
+access-list acl_inside_in extended permit tcp object-group GRP-HST-Exchange_Servers object-group GRP-HST-Message_Labs eq smtp 
+access-list acl_inside_in remark *** Rule-042:MessageLabs ***
+access-list acl_inside_in extended permit tcp object-group GRP-HST-Exchange_Servers any eq www 
+access-list acl_inside_in extended permit tcp object-group GRP-HST-Exchange_Servers any eq https 
+access-list acl_dmz_in remark *** Rule-001:DMZ (ICMP) ***
+access-list acl_dmz_in extended permit icmp object OBJ-NET-Mondrian_DMZ any 
+access-list acl_dmz_in remark *** Rule-002:Remote1 Access to Servers and Workstations ***
+access-list acl_dmz_in extended permit ip object OBJ-HST-remote1.mondrian.com object OBJ-NET-VLAN100_Servers 
+access-list acl_dmz_in extended permit ip object OBJ-HST-remote1.mondrian.com object OBJ-NET-VLAN1_GRE_Workstations 
+access-list acl_dmz_in extended permit ip object OBJ-HST-remote1.mondrian.com object OBJ-NET-VLAN1_PHL_LAN 
+access-list acl_dmz_in extended permit ip object OBJ-HST-remote1.mondrian.com object OBJ-NET-VLAN1_DC2_Servers_And_Workstations 
+access-list acl_dmz_in remark *** Rule-003:Remote Access VPN DHCP ***
+access-list acl_dmz_in extended permit ip object OBJ-NET-Goswell_Road_Remote_Access_DHCP object OBJ-NET-VLAN1_GRE_Workstations 
+access-list acl_dmz_in extended permit ip object OBJ-NET-Goswell_Road_Remote_Access_DHCP object OBJ-NET-VLAN100_Servers 
+access-list acl_dmz_in extended permit ip object OBJ-NET-Goswell_Road_Remote_Access_DHCP object OBJ-NET-VLAN1_PHL_LAN 
+access-list acl_dmz_in extended permit ip object OBJ-NET-Goswell_Road_Remote_Access_DHCP object OBJ-NET-VLAN1_DC2_Servers_And_Workstations 
+access-list BLUESOURCE-VPN extended permit ip object Net_vServers_100 object-group BlueSource_Backup 
+access-list acl_vendor-dmz_in extended permit icmp any any 
+access-list MANSELL-VPN extended permit ip object obj-10.0.0.0-8 object MANSELL-REMOTE 
+pager lines 24
+logging enable
+logging timestamp
+logging buffer-size 819200
+logging buffered debugging
+logging trap informational
+logging asdm informational
+logging host outside 217.169.44.14
+logging host inside 10.202.100.55
+mtu outside 1500
+mtu inside 1500
+mtu CLOUD-MGMT 1500
+mtu VENDOR-DMZ 1500
+mtu DMZ 1500
+mtu management 1500
+ip verify reverse-path interface outside
+ip verify reverse-path interface inside
+ip verify reverse-path interface VENDOR-DMZ
+ip verify reverse-path interface DMZ
+failover
+failover lan unit primary
+failover lan interface failover GigabitEthernet0/3
+failover key 23456yujnhYUKJTHGR
+failover replication http
+failover link failover GigabitEthernet0/3
+failover interface ip failover 1.1.1.1 255.255.255.252 standby 1.1.1.2
+icmp unreachable rate-limit 1 burst-size 1
+icmp permit host 62.149.52.246 outside
+icmp permit host 217.10.128.146 outside
+icmp permit host 217.10.128.170 outside
+icmp permit host 52.16.167.74 outside
+icmp deny any outside
+asdm image disk0:/asdm-7221.bin
+no asdm history enable
+arp timeout 14400
+no arp permit-nonconnected
+nat (inside,outside) source static obj-10.0.0.0-8 obj-10.0.0.0-8 destination static OBJ-NET-Mansell_Street OBJ-NET-Mansell_Street no-proxy-arp route-lookup
+nat (inside,VENDOR-DMZ) source static OBJ-HST-FINSBURY OBJ-HST-FINSBURY-XLAT destination static OBJ-HST-Bloomberg_FIET_Hub OBJ-HST-Bloomberg_FIET_Hub
+nat (inside,VENDOR-DMZ) source static OBJ-HST-FINSBURY OBJ-HST-FINSBURY-XLAT destination static GRP-HST-Autex_Hosts GRP-HST-Autex_Hosts
+nat (inside,VENDOR-DMZ) source static OBJ-HST-HESTON OBJ-HST-HESTON-XLAT destination static OBJ-HST-ITG_MQ_Server OBJ-HST-ITG_MQ_Server
+nat (inside,VENDOR-DMZ) source static OBJ-HST-MORDEN OBJ-HST-MORDEN-XLAT destination static OBJ-HST-ITG_MQ_Server OBJ-HST-ITG_MQ_Server
+nat (inside,VENDOR-DMZ) source static OBJ-HST-COLLIER OBJ-HST-COLLIER-XLAT destination static OBJ-HST-ITG_MQ_Server OBJ-HST-ITG_MQ_Server
+nat (inside,VENDOR-DMZ) source static any any destination static OBJ-HST-ITG_MQ_Server OBJ-HST-ITG_MQ_Server
+nat (DMZ,VENDOR-DMZ) source static any any destination static OBJ-HST-ITG_MQ_Server OBJ-HST-ITG_MQ_Server
+nat (inside,outside) source static OBJ-HST-LIMEHOUSE OBJ-HST-LIMEHOUSE-EXT
+nat (inside,outside) source static OBJ-HST-CORE.MONDRIAN.COM OBJ-HST-CORE.MONDRIAN.COM-EXT
+nat (inside,outside) source static OBJ-HST-SENTRY.MONDRIAN.COM OBJ-HST-SENTRY.MONDRIAN.COM-EXT
+nat (inside,DMZ) source static Net_Mondrian_Networks Net_Mondrian_Networks destination static Net_Mondrian_Networks-DMZ Net_Mondrian_Networks-DMZ
+nat (inside,VENDOR-DMZ) source static Net_Mondrian_Networks Net_Mondrian_Networks destination static Net_Bloomberg_Data_Networks Net_Bloomberg_Data_Networks
+nat (inside,VENDOR-DMZ) source static Net_Mondrian_Networks Net_Mondrian_Networks destination static Net_Bloomberg_Electronic_Trading Net_Bloomberg_Electronic_Trading
+nat (inside,VENDOR-DMZ) source static Net_Mondrian_Networks Net_Mondrian_Networks destination static Host_NYFIX_UAT_PrivateCircuit Host_NYFIX_UAT_PrivateCircuit
+nat (inside,VENDOR-DMZ) source static Net_Mondrian_Networks Net_Mondrian_Networks destination static Host_NYFIX_PROD Host_NYFIX_PROD
+nat (inside,VENDOR-DMZ) source static Net_Mondrian_Networks Net_Mondrian_Networks destination static Hosts_UBS_InterDealer_Srvs Hosts_UBS_InterDealer_Srvs
+nat (inside,DMZ) source static Net_Mondrian_Networks Net_Mondrian_Networks destination static Net_Goswell_Road_Mondrian_DMZ_SA_DHCP Net_Goswell_Road_Mondrian_DMZ_SA_DHCP
+nat (inside,VENDOR-DMZ) source static any any destination static Hosts_ITG_UAT_Servers Hosts_ITG_UAT_Servers
+nat (DMZ,VENDOR-DMZ) source static any any destination static Hosts_ITG_UAT_Servers Hosts_ITG_UAT_Servers
+nat (inside,outside) source static OBJ-NET-VLAN100_Servers OBJ-NET-VLAN100_Servers destination static GRP-NET-Bluesource_Backups GRP-NET-Bluesource_Backups no-proxy-arp route-lookup
+nat (inside,VENDOR-DMZ) source dynamic Net_vServers_100 interface destination static Net_Vendor_DMZ Net_Vendor_DMZ
+nat (inside,VENDOR-DMZ) source static Net_Mondrian_Networks Net_Mondrian_Networks destination static Net_Vendor_DMZ Net_Vendor_DMZ
+nat (inside,outside) source static Switch-GR-GATEWAY Switch-GR-GATEWAY-EXT
+nat (inside,outside) source dynamic Net_Mondrian_Networks interface
+nat (DMZ,outside) source static OBJ-HST-remote1.mondrian.com OBJ-HST-remote1.mondrian.com-EXT
+nat (inside,outside) source static OBJ-HST-Gresham_St_VideoConf OBJ-HST-Gresham_St_VideoConf-EXT
+!
+object network Net_vServers_100
+ nat (inside,VENDOR-DMZ) dynamic interface
+access-group acl_outside_in in interface outside
+access-group acl_inside_in in interface inside
+access-group acl_vendor-dmz_in in interface VENDOR-DMZ
+access-group acl_dmz_in in interface DMZ
+router ospf 1
+ router-id 172.31.96.106
+ network 172.19.1.0 255.255.255.0 area 0
+ network 172.20.1.0 255.255.255.0 area 0
+ network 172.31.96.104 255.255.255.248 area 0
+ log-adj-changes
+!
+route outside 0.0.0.0 0.0.0.0 217.169.38.161 1
+route VENDOR-DMZ 164.55.2.0 255.255.255.0 172.20.1.30 1
+route VENDOR-DMZ 164.55.3.0 255.255.255.0 172.20.1.30 1
+route VENDOR-DMZ 169.141.1.75 255.255.255.255 172.20.1.50 1
+route VENDOR-DMZ 169.141.8.70 255.255.255.255 172.20.1.50 1
+route DMZ 172.21.1.0 255.255.255.128 172.19.1.30 1
+route DMZ 172.21.1.128 255.255.255.128 172.19.1.50 1
+timeout xlate 3:00:00
+timeout pat-xlate 0:00:30
+timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02
+timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00
+timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00
+timeout sip-provisional-media 0:02:00 uauth 0:05:00 absolute
+timeout tcp-proxy-reassembly 0:01:00
+timeout floating-conn 0:00:00
+user-identity default-domain LOCAL
+aaa authentication ssh console LOCAL 
+aaa authentication telnet console LOCAL 
+aaa authorization command LOCAL 
+http server enable
+http 192.168.1.0 255.255.255.0 management
+http 10.202.80.0 255.255.252.0 inside
+snmp-server host outside 217.169.44.57 community 8l4ck81rd
+snmp-server host outside 217.169.32.66 community 8l4ck81rd
+snmp-server host inside 10.202.100.100 community m0ndr14n
+snmp-server host outside 95.131.218.2 poll community MON1t0r14n version 2c
+snmp-server host outside 94.247.101.2 poll community MON1t0r14n version 2c
+snmp-server host outside 10.1.162.205 poll community MON1t0r14n version 2c
+no snmp-server location
+no snmp-server contact
+crypto ipsec ikev1 transform-set ESP-AES-SHA1 esp-aes esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-3DES-SHA1 esp-3des esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-AES256-SHA esp-aes-256 esp-sha-hmac 
+crypto ipsec security-association pmtu-aging infinite
+crypto map OUTSIDE-CRYPTOMAP 10 match address BLUESOURCE-VPN
+crypto map OUTSIDE-CRYPTOMAP 10 set peer 130.0.82.112 
+crypto map OUTSIDE-CRYPTOMAP 10 set ikev1 transform-set ESP-AES-SHA1
+crypto map OUTSIDE-CRYPTOMAP 10 set security-association lifetime seconds 28800
+crypto map OUTSIDE-CRYPTOMAP 10 set reverse-route
+crypto map OUTSIDE-CRYPTOMAP 20 match address MANSELL-VPN
+crypto map OUTSIDE-CRYPTOMAP 20 set peer 37.244.72.108 
+crypto map OUTSIDE-CRYPTOMAP 20 set ikev1 transform-set ESP-AES256-SHA
+crypto map OUTSIDE-CRYPTOMAP 20 set security-association lifetime seconds 28800
+crypto map OUTSIDE-CRYPTOMAP interface outside
+crypto ca trustpool policy
+crypto ikev1 enable outside
+crypto ikev1 policy 5
+ authentication pre-share
+ encryption aes-256
+ hash sha
+ group 2
+ lifetime 86400
+telnet timeout 5
+no ssh stricthostkeycheck
+ssh 217.169.44.14 255.255.255.255 outside
+ssh 217.169.44.97 255.255.255.255 outside
+ssh 217.169.34.120 255.255.255.248 outside
+ssh 217.169.32.66 255.255.255.255 outside
+ssh 62.149.52.246 255.255.255.255 outside
+ssh 217.169.38.161 255.255.255.255 outside
+ssh 217.10.128.128 255.255.255.128 outside
+ssh 10.202.82.44 255.255.255.255 inside
+ssh 10.202.82.28 255.255.255.255 inside
+ssh 10.202.82.3 255.255.255.255 inside
+ssh 10.202.83.195 255.255.255.255 inside
+ssh 10.202.100.177 255.255.255.255 inside
+ssh 10.202.82.2 255.255.255.255 inside
+ssh 172.31.96.113 255.255.255.255 CLOUD-MGMT
+ssh timeout 10
+ssh version 2
+ssh key-exchange group dh-group1-sha1
+console timeout 10
+dhcpd address 192.168.1.2-192.168.1.254 management
+dhcpd enable management
+!
+!
+tls-proxy maximum-session 1000
+!
+threat-detection basic-threat
+threat-detection statistics access-list
+no threat-detection statistics tcp-intercept
+ntp server 217.169.48.82
+ntp server 82.147.0.131
+ntp server 217.10.128.131
+dynamic-access-policy-record DfltAccessPolicy
+username mondrian_admin password l9RpVE2t/SqRakHp encrypted
+username 6dgauditor password uPWIhK8LXPo0hX/F encrypted
+username bisadmin password beYnBGXnuQ/H2B.u encrypted privilege 15
+tunnel-group 130.0.82.112 type ipsec-l2l
+tunnel-group 130.0.82.112 ipsec-attributes
+ ikev1 pre-shared-key Mon$06092015dr1an
+tunnel-group 37.244.72.108 type ipsec-l2l
+tunnel-group 37.244.72.108 ipsec-attributes
+ ikev1 pre-shared-key mx39275oasdf1341395adf
+!
+class-map inspection_default
+ match default-inspection-traffic
+!
+!
+policy-map type inspect dns preset_dns_map
+ parameters
+  message-length maximum client auto
+  message-length maximum 512
+policy-map global_policy
+ class inspection_default
+  inspect dns preset_dns_map 
+  inspect ftp 
+  inspect h323 h225 
+  inspect h323 ras 
+  inspect rsh 
+  inspect rtsp 
+  inspect sqlnet 
+  inspect skinny  
+  inspect sunrpc 
+  inspect xdmcp 
+  inspect sip  
+  inspect netbios 
+  inspect tftp 
+  inspect ip-options 
+  inspect icmp 
+!
+service-policy global_policy global
+privilege show level 5 mode exec command running-config
+privilege show level 5 mode exec command conn
+privilege show level 5 mode exec command access-list
+privilege show level 5 mode configure command access-list
+prompt hostname priority state 
+no call-home reporting anonymous
+Cryptochecksum:6b1644030c6f83ecd15c928a30b6ae9f
+
